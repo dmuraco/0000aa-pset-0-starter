@@ -40,6 +40,8 @@ class SummableSequence(object):
         print(self.my_lst)
 
         for z in range(i):
+            # print(self.my_lst)
+            # print((sum(self.my_lst)))
             self.my_lst.append(sum(self.my_lst))
             self.my_lst.pop(0)
 
@@ -52,3 +54,5 @@ if __name__ == "__main__":
 
     new_seq = SummableSequence(5, 7, 11)
     print("new_seq(100000)[-8:]:", last_8(new_seq(100000)))
+
+    # print("new_seq(2)[-8:]:", last_8(new_seq(2)))
