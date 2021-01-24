@@ -8,7 +8,12 @@ def last_8(some_int):
     :rtype: int
     """
 
-    raise NotImplementedError()
+    some_str = str(some_int)
+    out_int = int(some_str[-8:])
+
+    return out_int
+
+    # raise NotImplementedError()
 
 
 def optimized_fibonacci(f):
