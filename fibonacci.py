@@ -39,7 +39,7 @@ class SummableSequence(object):
         print("inside call")
         print(self.my_lst)
 
-        for z in range(i):
+        for z in range(i-1):
             # print(self.my_lst)
             # print((sum(self.my_lst)))
             self.my_lst.append(sum(self.my_lst))
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     new_seq = SummableSequence(5, 7, 11)
     print("new_seq(100000)[-8:]:", last_8(new_seq(100000)))
 
-    new_seq = SummableSequence(0, 1)
-    print("new_seq(100000)[-8:]:", last_8(new_seq(45)))
+    # new_seq = SummableSequence(0, 1)
+    # print("OUT", last_8(new_seq(10)))
 
     # print("new_seq(2)[-8:]:", last_8(new_seq(2)))
