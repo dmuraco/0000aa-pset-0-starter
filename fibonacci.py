@@ -13,7 +13,6 @@ def last_8(some_int):
 
     return out_int
 
-    # raise NotImplementedError()
 
 
 def optimized_fibonacci(f):
@@ -30,15 +29,21 @@ def optimized_fibonacci(f):
     return accum
 
 
-    # raise NotImplementedError()
-
 
 class SummableSequence(object):
     def __init__(self, *initial):
-        raise NotImplementedError()
+        self.my_lst = list(initial)
+
 
     def __call__(self, i):
-        raise NotImplementedError()
+        print("inside call")
+        print(self.my_lst)
+
+        for z in range(i):
+            self.my_lst.append(sum(self.my_lst))
+            self.my_lst.pop(0)
+
+        return (self.my_lst.pop())
 
 
 if __name__ == "__main__":
