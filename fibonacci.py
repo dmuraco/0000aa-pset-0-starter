@@ -45,7 +45,7 @@ class SummableSequence(object):
             self.my_lst.append(sum(self.my_lst))
             self.my_lst.pop(0)
 
-        return (self.my_lst.pop())
+        return (self.my_lst[-1])
 
 
 if __name__ == "__main__":
