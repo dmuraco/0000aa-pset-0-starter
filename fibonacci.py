@@ -17,7 +17,20 @@ def last_8(some_int):
 
 
 def optimized_fibonacci(f):
-    raise NotImplementedError()
+
+    accum = 0
+    past1 = 1
+    past2 = 1
+
+    for z in range(f):
+        past2 = past1
+        past1 = accum
+        accum = past2 + past1
+
+    return accum
+
+
+    # raise NotImplementedError()
 
 
 class SummableSequence(object):
