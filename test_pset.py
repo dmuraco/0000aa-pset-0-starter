@@ -71,7 +71,8 @@ class FibTests(TestCase):
         for n in range(0, 50, 5):
             with timeout(message="Timeout running f({})".format(n)):
                 print(n)
-                self.assertEqual(ss(n), ss(n))
+                print(ss(n))
+                self.assertEqual(n, n)
 
                 # print(f"new_seq({n})[-8:]: {last_8(ss(n))}")
                 # raise NotImplementedError(
