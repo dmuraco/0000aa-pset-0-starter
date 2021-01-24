@@ -55,4 +55,7 @@ if __name__ == "__main__":
     new_seq = SummableSequence(5, 7, 11)
     print("new_seq(100000)[-8:]:", last_8(new_seq(100000)))
 
+    new_seq = SummableSequence(0, 1)
+    print("new_seq(100000)[-8:]:", last_8(new_seq(45)))
+
     # print("new_seq(2)[-8:]:", last_8(new_seq(2)))
