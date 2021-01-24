@@ -17,7 +17,10 @@ def print_pyramid(rows):
 
     :param int rows: total height
     """
-    raise NotImplementedError("Called with rows={}".format(rows))
+    # raise NotImplementedError("Called with rows={}".format(rows))
+    for x in range(rows):
+        print(f"{'-' * (rows - x)}{'=' * (x * 2 + 1)}{'-' * (rows - x)}")
+
 
 
 if __name__ == "__main__":
