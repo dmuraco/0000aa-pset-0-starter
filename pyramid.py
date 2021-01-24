@@ -19,7 +19,7 @@ def print_pyramid(rows):
     """
     # raise NotImplementedError("Called with rows={}".format(rows))
     for x in range(rows):
-        print(f"{'-' * (rows - x)}{'=' * (x * 2 + 1)}{'-' * (rows - x)}")
+        print(f"{'-' * (rows - x-1)}{'=' * (x * 2 + 1)}{'-' * (rows - x-1)}")
 
 
 
