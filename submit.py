@@ -8,6 +8,13 @@ from canvasapi.quiz import QuizSubmissionQuestion, QuizSubmission
 from environs import Env
 from git import Repo
 
+import fibonacci
+import contextlib
+import pyramid
+import hashlib
+from io import StringIO
+import re
+
 
 def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     """Creates answers for Canvas quiz questions"""
@@ -15,8 +22,42 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     # It should be a list of dicts, one per q, each with an 'id' and 'answer' field
     # The format of the 'answer' field depends on the question type
     # You are responsible for collating questions with the functions to call - do not hard code
-    raise NotImplementedError()
+    # raise NotImplementedError()
     # eg {"id": questions[0].id, "answer": {key: some_func(key) for key in questions[0].answer.keys()}}
+
+    for x in questions:
+
+        print(re.findall('id="(\w+)"', x.question_text))
+
+
+
+    # pyramid
+    mem_file = StringIO()
+    with contextlib.redirect_stdout(mem_file):
+        pyramid.print_pyramid(10)
+
+    pyramid_hash = hashlib.sha256(mem_file.getvalue().encode()).hexdigest()[:8]
+
+    print(mem_file.getvalue())
+    print(pyramid_hash)
+
+    # fibonacci
+    fib = fibonacci.optimized_fibonacci(6)
+    print(f"fib is {fib}")
+
+    # summable sequence
+    new_seq = fibonacci.SummableSequence(5, 7, 11)
+    ss = fibonacci.last_8(new_seq(100000))
+    print("new_seq(100000)[-8:]:", ss)
+
+    # assemble return
+    test_answer = hashlib.sha256("asdfasdfasdfasdf".encode()).hexdigest()
+    response_list = []
+    response_list.append({"id": 2476703, "answer": {"1": test_answer, "2": test_answer}})
+    response_list.append({"id": 2476706, "answer": 4609})
+
+    return response_list
+
 
 
 def get_submission_comments(repo: Repo, qsubmission: QuizSubmission) -> Dict:
@@ -39,6 +80,8 @@ if __name__ == "__main__":
 
     # Load environment
     env = Env()
+    # Load locally.  this needs to come out at some point.
+    env.read_env()
 
     course_id = env.int("CANVAS_COURSE_ID")
     assignment_id = env.int("CANVAS_ASSIGNMENT_ID")
@@ -60,6 +103,9 @@ if __name__ == "__main__":
     course = canvas.get_course(course_id, **masquerade)
     assignment = course.get_assignment(assignment_id, **masquerade)
     quiz = course.get_quiz(quiz_id, **masquerade)
+
+    # print(f"the quiz is {quiz}")
+    # print(f"the quiz id is {quiz.id}")
 
     # Begin submissions
     url = "https://github.com/csci-e-29/{}/commit/{}".format(

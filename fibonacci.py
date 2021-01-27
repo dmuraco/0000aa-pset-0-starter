@@ -36,8 +36,8 @@ class SummableSequence(object):
 
 
     def __call__(self, i):
-        print("inside call")
-        print(self.my_lst)
+        # print("inside call")
+        # print(self.my_lst)
 
         for z in range(i-1):
             # print(self.my_lst)
@@ -53,9 +53,10 @@ if __name__ == "__main__":
     print("f(100000)[-8:]", last_8(optimized_fibonacci(100000)))
 
     new_seq = SummableSequence(5, 7, 11)
-    print("new_seq(100000)[-8:]:", last_8(new_seq(100000)))
+    print("new_seq(100000)[-8:]:", last_8(new_seq(100000)))  # 60500327
 
-    # new_seq = SummableSequence(0, 1)
-    # print("OUT", last_8(new_seq(10)))
+    # new_seq = SummableSequence(5, 7, 11)
+    # print("new_seq(100000)[-8:]:", last_8(new_seq(99999)))  # 64224133
 
-    # print("new_seq(2)[-8:]:", last_8(new_seq(2)))
+    # new_seq = SummableSequence(5, 7, 11)
+    # print("new_seq(100000)[-8:]:", last_8(new_seq(100001)))  # 87834603
