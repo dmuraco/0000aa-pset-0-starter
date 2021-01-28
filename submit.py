@@ -25,6 +25,20 @@ def build_answer_hours(question) -> Dict:
             return {"id": question.id, "answer": answ["id"]}
 
 
+def build_answer_pyramid(question) -> Dict:
+    mem_file = StringIO()
+    with contextlib.redirect_stdout(mem_file):
+        pyramid.print_pyramid(10)
+
+    pyramid_hash = hashlib.sha256(mem_file.getvalue().encode()).hexdigest()[:8]
+
+    return {"id": question.id, "answer": pyramid_hash}
+
+
+def build_answer_sequence(question) -> Dict:
+    pass
+
+
 def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     """Creates answers for Canvas quiz questions"""
     # Formulate your answers - see docs for QuizSubmission.answer_submission_questions below
@@ -40,18 +54,24 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
         if 'hours did you spend' in quest.question_text:
             print(build_answer_hours(quest))
             response_list.append(build_answer_hours(quest))
+        if 'output of the pyramid' in quest.question_text:
+            print(build_answer_pyramid)
+            response_list.append(build_answer_hours(quest))
+        if '8 digits of the following sequences' in quest.question_text:
+            print(build_answer_pyramid)
+            response_list.append(build_answer_hours(quest))
 
 
 
     # pyramid
-    mem_file = StringIO()
-    with contextlib.redirect_stdout(mem_file):
-        pyramid.print_pyramid(10)
-
-    pyramid_hash = hashlib.sha256(mem_file.getvalue().encode()).hexdigest()[:8]
-
-    print(mem_file.getvalue())
-    print(pyramid_hash)
+    # mem_file = StringIO()
+    # with contextlib.redirect_stdout(mem_file):
+    #     pyramid.print_pyramid(10)
+    #
+    # pyramid_hash = hashlib.sha256(mem_file.getvalue().encode()).hexdigest()[:8]
+    #
+    # print(mem_file.getvalue())
+    # print(pyramid_hash)
 
     # fibonacci
     fib = fibonacci.optimized_fibonacci(6)
