@@ -15,6 +15,15 @@ import hashlib
 from io import StringIO
 import re
 
+HOURS_SPENT = '15+'
+
+def build_answer_hours(question) -> Dict:
+    print("inside build hours")
+    print(question.answers)
+    for answ in question.answers:
+        if answ["text"] == HOURS_SPENT:
+            return {"id": question.id, "answer": answ["id"]}
+
 
 def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     """Creates answers for Canvas quiz questions"""
@@ -25,9 +34,12 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     # raise NotImplementedError()
     # eg {"id": questions[0].id, "answer": {key: some_func(key) for key in questions[0].answer.keys()}}
 
-    for x in questions:
-
-        print(re.findall('id="(\w+)"', x.question_text))
+    response_list = []
+    for quest in questions:
+        print(quest.question_text)
+        if 'hours did you spend' in quest.question_text:
+            print(build_answer_hours(quest))
+            response_list.append(build_answer_hours(quest))
 
 
 
@@ -52,9 +64,10 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
 
     # assemble return
     test_answer = hashlib.sha256("asdfasdfasdfasdf".encode()).hexdigest()
-    response_list = []
+
+    # hard coded values to validate formating of answers to the sample test
     response_list.append({"id": 2476703, "answer": {"1": test_answer, "2": test_answer}})
-    response_list.append({"id": 2476706, "answer": 4609})
+    # response_list.append({"id": 2476706, "answer": 4609})
 
     return response_list
 

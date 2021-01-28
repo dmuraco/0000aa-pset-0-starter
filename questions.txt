@@ -1,0 +1,25 @@
+Question 1 - <p id="seq">What are the last 8 digits of the following sequences?  The key is of the form <code>"_".join([seq_name, *initial, arg])</code>.</p>
+{'answer': {'fib_100000': None,
+            'fib_234202': None,
+            'summable_0_1_100000': None,
+            'summable_5_7_11_100000': None,
+            'summable_5_98_7_35_2_603': None,
+            'summable_8_9_99_141515': None},
+ 'answers': None,
+ 'id': 2460827,
+ 'question_type': 'fill_in_multiple_blanks_question'}
+
+Question 2 - <p id="pyramid">Capture the output of the pyramid code for the following number of rows.  Use <code>hashlib.sha256(output.encode()).hexdigest()</code> and return the first 8 hex characters. </p>
+{'answer': {'pyramid_24': None, 'pyramid_53': None},
+ 'answers': None,
+ 'id': 2477613,
+ 'question_type': 'fill_in_multiple_blanks_question'}
+
+Question 3 - <p id="hours">How many hours did you spend on this assignment?</p>
+{'answer': None,
+ 'answers': [{'html': '', 'id': 8032, 'text': '15+'},
+             {'html': '', 'id': 568, 'text': '10-15'},
+             {'html': '', 'id': 8610, 'text': '5-10'},
+             {'html': '', 'id': 3268, 'text': '0-5'}],
+ 'id': 2477713,
+ 'question_type': 'multiple_choice_question'}
