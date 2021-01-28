@@ -23,3 +23,13 @@ Question 3 - <p id="hours">How many hours did you spend on this assignment?</p>
              {'html': '', 'id': 3268, 'text': '0-5'}],
  'id': 2477713,
  'question_type': 'multiple_choice_question'}
+
+
+###############################################################################
+
+ [{'answer': {'fib_100000': 28746875,
+             'fib_234202': 86555351,
+             'summable_0_1_100000': 28746875,
+             'summable_5_7_11_100000': 60500327,
+             'summable_5_98_7_35_2_603': 50380921,
+             'summable_8_9_99_141515': 59744084},

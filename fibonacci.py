@@ -52,8 +52,11 @@ if __name__ == "__main__":
 
     print("f(100000)[-8:]", last_8(optimized_fibonacci(100000)))
 
-    new_seq = SummableSequence(5, 7, 11)
+    new_seq = SummableSequence(0, 1)
     print("new_seq(100000)[-8:]:", last_8(new_seq(100000)))  # 60500327
+
+    # new_seq = SummableSequence(5, 7, 11)
+    # print("new_seq(100000)[-8:]:", last_8(new_seq(100000)))  # 60500327
 
     # new_seq = SummableSequence(5, 7, 11)
     # print("new_seq(100000)[-8:]:", last_8(new_seq(99999)))  # 64224133

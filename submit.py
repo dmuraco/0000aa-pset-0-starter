@@ -37,13 +37,30 @@ def build_answer_pyramid(question) -> Dict:
         pyramid_hash = hashlib.sha256(mem_file.getvalue().encode()).hexdigest()[:8]
         # "answer": pyramid_hash
         answer_dict[answ] = pyramid_hash
-    return_dict = {"id": question.id, "answer": answer_dict}
-    print(return_dict)
+    # return_dict = {"id": question.id, "answer": answer_dict}
+    # print(return_dict)
     return {"id": question.id, "answer": answer_dict}
 
 
 def build_answer_sequence(question) -> Dict:
-    pass
+    answer_dict = {}
+    for answ in question.answer:
+        components = answ.split("_")
+        op_type = components.pop(0)
+        loops = int(components.pop())
+        starting_seq = tuple(map(int, components))
+
+        if op_type == "summable":
+            new_seq = fibonacci.SummableSequence(*starting_seq)
+            # print("new_seq(100000)[-8:]:", fibonacci.last_8(new_seq(loops)))  # 60500327
+            answer_dict[answ] = fibonacci.last_8(new_seq(loops))
+        elif op_type == "fib":
+            # print(fibonacci.last_8(fibonacci.optimized_fibonacci(loops)))
+            answer_dict[answ] = fibonacci.last_8(fibonacci.optimized_fibonacci(loops))
+    # return_dict = {"id": question.id, "answer": answer_dict}
+    # print(return_dict)
+    return {"id": question.id, "answer": answer_dict}
+
 
 
 def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
