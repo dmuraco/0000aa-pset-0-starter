@@ -13,26 +13,33 @@ import contextlib
 import pyramid
 import hashlib
 from io import StringIO
-import re
 
 HOURS_SPENT = '15+'
 
 def build_answer_hours(question) -> Dict:
-    print("inside build hours")
-    print(question.answers)
     for answ in question.answers:
         if answ["text"] == HOURS_SPENT:
             return {"id": question.id, "answer": answ["id"]}
 
 
+
 def build_answer_pyramid(question) -> Dict:
-    mem_file = StringIO()
-    with contextlib.redirect_stdout(mem_file):
-        pyramid.print_pyramid(10)
+    answer_dict = {}
 
-    pyramid_hash = hashlib.sha256(mem_file.getvalue().encode()).hexdigest()[:8]
+    for answ in question.answer:
+        levels = answ.split("_")[1]
+        print(answ)
+        print(levels)
+        mem_file = StringIO()
+        with contextlib.redirect_stdout(mem_file):
+            pyramid.print_pyramid(int(levels))
 
-    return {"id": question.id, "answer": pyramid_hash}
+        pyramid_hash = hashlib.sha256(mem_file.getvalue().encode()).hexdigest()[:8]
+        # "answer": pyramid_hash
+        answer_dict[answ] = pyramid_hash
+    return_dict = {"id": question.id, "answer": answer_dict}
+    print(return_dict)
+    return {"id": question.id, "answer": answer_dict}
 
 
 def build_answer_sequence(question) -> Dict:
@@ -56,10 +63,10 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
             response_list.append(build_answer_hours(quest))
         if 'output of the pyramid' in quest.question_text:
             print(build_answer_pyramid)
-            response_list.append(build_answer_hours(quest))
+            response_list.append(build_answer_pyramid(quest))
         if '8 digits of the following sequences' in quest.question_text:
-            print(build_answer_pyramid)
-            response_list.append(build_answer_hours(quest))
+            print(build_answer_sequence(quest))
+            response_list.append(build_answer_sequence(quest))
 
 
 
