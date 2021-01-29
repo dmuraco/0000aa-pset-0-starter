@@ -17,6 +17,11 @@ from io import StringIO
 HOURS_SPENT = '15+'
 
 def build_answer_hours(question) -> Dict:
+    """Generates a response dict for build hours question
+
+    :param question question: the question for which we will build a response
+    :rtype: dict
+    """
     for answ in question.answers:
         if answ["text"] == HOURS_SPENT:
             return {"id": question.id, "answer": answ["id"]}
@@ -24,6 +29,11 @@ def build_answer_hours(question) -> Dict:
 
 
 def build_answer_pyramid(question) -> Dict:
+    """Generates a response dict for pyramid question
+
+    :param question question: the question for which we will build a response
+    :rtype: dict
+    """
     answer_dict = {}
 
     for answ in question.answer:
@@ -43,6 +53,11 @@ def build_answer_pyramid(question) -> Dict:
 
 
 def build_answer_sequence(question) -> Dict:
+    """Generates a response dict for fib & sequence question
+
+    :param question question: the question for which we will build a response
+    :rtype: dict
+    """
     answer_dict = {}
     for answ in question.answer:
         components = answ.split("_")
@@ -85,33 +100,22 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
             print(build_answer_sequence(quest))
             response_list.append(build_answer_sequence(quest))
 
-
-
-    # pyramid
-    # mem_file = StringIO()
-    # with contextlib.redirect_stdout(mem_file):
-    #     pyramid.print_pyramid(10)
-    #
-    # pyramid_hash = hashlib.sha256(mem_file.getvalue().encode()).hexdigest()[:8]
-    #
-    # print(mem_file.getvalue())
-    # print(pyramid_hash)
-
+    # this is for experimenting with the test problem set.
     # fibonacci
-    fib = fibonacci.optimized_fibonacci(6)
-    print(f"fib is {fib}")
-
-    # summable sequence
-    new_seq = fibonacci.SummableSequence(5, 7, 11)
-    ss = fibonacci.last_8(new_seq(100000))
-    print("new_seq(100000)[-8:]:", ss)
-
-    # assemble return
-    test_answer = hashlib.sha256("asdfasdfasdfasdf".encode()).hexdigest()
-
-    # hard coded values to validate formating of answers to the sample test
-    response_list.append({"id": 2476703, "answer": {"1": test_answer, "2": test_answer}})
-    # response_list.append({"id": 2476706, "answer": 4609})
+    # fib = fibonacci.optimized_fibonacci(6)
+    # print(f"fib is {fib}")
+    #
+    # # summable sequence
+    # new_seq = fibonacci.SummableSequence(5, 7, 11)
+    # ss = fibonacci.last_8(new_seq(100000))
+    # print("new_seq(100000)[-8:]:", ss)
+    #
+    # # assemble return
+    # test_answer = hashlib.sha256("asdfasdfasdfasdf".encode()).hexdigest()
+    #
+    # # hard coded values to validate formating of answers to the sample test
+    # response_list.append({"id": 2476703, "answer": {"1": test_answer, "2": test_answer}})
+    # # response_list.append({"id": 2476706, "answer": 4609})
 
     return response_list
 
